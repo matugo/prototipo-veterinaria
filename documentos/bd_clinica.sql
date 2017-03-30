@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-03-2017 a las 18:14:33
+-- Tiempo de generación: 31-03-2017 a las 00:06:06
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bd_clinica`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tb_ayuda`
+--
+
+CREATE TABLE `tb_ayuda` (
+  `id_ayuda` int(11) NOT NULL,
+  `ayuda` varchar(100) NOT NULL,
+  `texto` text NOT NULL,
+  `url` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -119,9 +132,29 @@ INSERT INTO `tb_sintomas` (`id_sintomas`, `sintomas`) VALUES
 (16, 'Zonas Sin Pelo'),
 (17, 'Piel Abultada');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tb_usuario`
+--
+
+CREATE TABLE `tb_usuario` (
+  `documento` varchar(50) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `id_relacion` int(11) NOT NULL,
+  `id_ayuda` int(11) NOT NULL,
+  `fecha_ingreso` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `tb_ayuda`
+--
+ALTER TABLE `tb_ayuda`
+  ADD PRIMARY KEY (`id_ayuda`);
 
 --
 -- Indices de la tabla `tb_enfermedad`
@@ -142,6 +175,14 @@ ALTER TABLE `tb_relacion`
 --
 ALTER TABLE `tb_sintomas`
   ADD PRIMARY KEY (`id_sintomas`);
+
+--
+-- Indices de la tabla `tb_usuario`
+--
+ALTER TABLE `tb_usuario`
+  ADD PRIMARY KEY (`documento`),
+  ADD KEY `id_relacion` (`id_relacion`),
+  ADD KEY `id_ayuda` (`id_ayuda`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -167,6 +208,13 @@ ALTER TABLE `tb_relacion`
 ALTER TABLE `tb_relacion`
   ADD CONSTRAINT `tb_relacion_ibfk_2` FOREIGN KEY (`id_sintomas`) REFERENCES `tb_sintomas` (`id_sintomas`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_relacion_ibfk_3` FOREIGN KEY (`id_enfermedad`) REFERENCES `tb_enfermedad` (`id_enfermedad`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tb_usuario`
+--
+ALTER TABLE `tb_usuario`
+  ADD CONSTRAINT `tb_usuario_ibfk_1` FOREIGN KEY (`id_relacion`) REFERENCES `tb_relacion` (`id_relacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_usuario_ibfk_2` FOREIGN KEY (`id_ayuda`) REFERENCES `tb_ayuda` (`id_ayuda`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
