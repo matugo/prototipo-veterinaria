@@ -1,5 +1,5 @@
 <!--
- Autor Marco Gonzalez-Alirio Obregon-Edwar Cruz
+ Autor Marco Gonzalez-Alirio Obregon
  ADSI
  1132133
 -->
@@ -47,7 +47,25 @@ $mi_obj=new operaciones;
 		<div class="col-xs-12 col-md-4">
 			
 				<h2>Busqueda</h2>
-				<input type="text" placeholder="Buscar" class="form-control"><hr>
+				<input type="text" placeholder="Buscar" class="form-control" ng-model="text_busqueda" ng-change="buscar();"><hr>
+				<div ng-repeat="x in row"><!--Es esencial para que muestre en pantalla los datos que se encuentrán en la base de datos-->
+					<div class='row'>
+						<div class='col-xs-12 col-md-10S ' style="text-align: justify;">
+											            
+				            
+		                    <strong><li>{{ x.Titulo }}</li></strong><!--trae en pantalla el titulo de una consulta-->
+		                    <br>
+		                    {{ x.Texto }} <!--trae en pantalla la descripción de una consulta-->
+						</div>
+							  
+						<div class='col-xs-12 col-md-10 '>
+						<br>
+						   	<img class="img img-responsive" src="{{ x.Img }}" width="500%"><!--trae en pantalla la imagen de una consulta-->
+
+					    </div>
+			    	</div>
+			    	<br><hr>
+				</div>
 		</div>
 		</div>
 	</div>
@@ -85,7 +103,6 @@ $mi_obj=new operaciones;
 								}
 								$scope.sintomas=salida;
 								if(salida.length != "" )
-
 								{
 									$http.get("resultado.php?cadena=" + salida)
 									.then(function (response) {$scope.campos = response.data.records;});
@@ -93,6 +110,16 @@ $mi_obj=new operaciones;
 								}
 
 							}
+
+							$scope.buscar = function(a)
+			                {
+			                    var buscar = $scope.text_busqueda;    
+			                    console.log(buscar);
+			                    //Aquí se hace el llamado a un php con conexión a MySQL.
+			                     $http.get( "resultado.php?busqueda=" + buscar )
+			                    .then(function( response ){ $scope.row = response.data.records;  }
+			                    );                                       
+			                }
 							
 						}
 					]
