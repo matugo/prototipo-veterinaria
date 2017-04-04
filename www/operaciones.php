@@ -6,6 +6,14 @@ include 'config.php';
 class operaciones
 {
 
+
+	/**
+	*Descrición : 		Esta funcion consiste en imprimir resultados.
+	*@param 	text 	llamado de la tabla de valores, de la base de datos.
+	*@param 	text 	Aqui Llamamos el campo de la tabla.
+	*@param 	text 	Se debe de tener unos requerimientos en la función.
+	*@return 	text 	dato de salida de la tabla selecionada.
+	**/
 function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
 	{
 		
@@ -32,6 +40,16 @@ function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
 		return $salida;
 	} 
 
+
+
+	/**
+	*Descrición : 		Esta funcion me trae todos los valores de la lista.
+	*@param 	text 	llamado del identificador de la lista.
+	*@param 	text 	Aqui Llamamos el campo de la tabla.
+	*@param 	text 	La llave primaria de una tabla.
+	*@param 	text 	nos muestra el campo en pantalla
+	*@return 	text 	Imprime los resultados de los datos seleccionados.
+	**/
 	function traer_lista_informacion( $nombre_lista, $tabla, $campo_llave_primaria, $campo_a_mostrar )
 	{
 		
@@ -58,6 +76,13 @@ function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
 
 		return $salida;	
 	}
+
+	/**
+	*Descrición : 		Esta funcion consiste en calcular la enfermedad y dar una impresion.  
+	*@param 	text 		
+	*@return 	text 	
+	**/
+
 
 	function calcular_enfermedad($sintomas)
 	{
@@ -87,6 +112,57 @@ function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
 				}
 		echo "</table>";
 
+	}
+
+	function buscar($busqueda)
+	{
+		    
+	       
+	        /*Esta conexión se realiza para la prueba con angularjs*/
+	        header("Access-Control-Allow-Origin: *");
+	        header("Content-Type: application/json; charset=UTF-8");
+
+	         include( "config.php" );
+	        $busqueda=$_GET['busqueda'];
+	        $conn = new mysqli( $servidor, $usuario, $clave, $base_de_datos );
+	        
+	        //Se busca principalmente por alias.
+	        
+	        $consulta = explode(",", $busqueda);
+	        //echo $consulta;
+	        $sql  = " SELECT * FROM tb_ayuda  WHERE ";
+	        for ($i=0; $i < count($consulta); $i ++) { 
+	        	
+	        	$sql .= " ayuda LIKE '%".$consulta[$i]."%'";
+	        	$sql .= " palabras_claves LIKE '%".$consulta[$i]."%'";
+	        	//$sql .= " OR definicion LIKE '%".$consulta[$i]."%'";
+	        	if ($i < (count($consulta)-1)) $sql.=" or ";
+
+	        }
+	        
+	        //echo $sql;
+	        //LA tabla que se cree debe tener la tabla aquí requerida, y los campos requeridos abajo.
+	        $result = $conn->query( $sql );
+	        
+	        $outp = "";
+	        
+	        while($rs = mysqli_fetch_assoc($result)) 
+	        {
+	            //Mucho cuidado con esta sintaxis, hay una gran probabilidad de fallo con cualquier elemento que falte.
+	            if ($outp != "") {$outp .= " , ";}
+	            
+	            $outp .= '{"Titulo":"'.$rs["ayuda"].'",';
+	            $outp .= '"Descripcion":"'.utf8_encode($rs["texto"]).'",';     // <-- La tabla MySQL debe tener este campo.
+	            $outp .= '"Imagen":"'.$rs["url"].'"}';
+
+	        }
+	        //echo $sql;
+	        $outp ='{"records":['.$outp.']}';
+	        $conn->close();
+	        
+	        echo($outp);
+	    
+	     
 	}
 }
 
