@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-03-2017 a las 00:06:06
+-- Tiempo de generación: 04-04-2017 a las 18:59:42
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -30,8 +30,20 @@ CREATE TABLE `tb_ayuda` (
   `id_ayuda` int(11) NOT NULL,
   `ayuda` varchar(100) NOT NULL,
   `texto` text NOT NULL,
-  `url` varchar(100) NOT NULL
+  `url` varchar(100) NOT NULL,
+  `palabras_claves` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tb_ayuda`
+--
+
+INSERT INTO `tb_ayuda` (`id_ayuda`, `ayuda`, `texto`, `url`, `palabras_claves`) VALUES
+(1, 'Casos de uso', 'Los diagramas de casos de uso sirven para especificar la comunicación y el comportamiento de un sistema mediante su interacción con los usuarios y/u otros sistemas. O lo que es igual, un diagrama que muestra la relación entre los actores y los casos de uso en un sistema. Una relación es una conexión entre los elementos del modelo, por ejemplo la especialización y la generalización son relaciones. Los diagramas de casos de uso se utilizan para ilustrar los requerimientos del sistema al mostrar cómo reacciona a eventos que se producen en su ámbito o en él mismo.', 'img/casos de uso.png', 'sistema, interaccion, usuarios, relacion, actores, conexion, modelo, especializacion, generalización.'),
+(2, 'diagrama de componentes', 'Un diagrama de componentes representa cómo un sistema de software es dividido en componentes y muestra las dependencias entre estos componentes. Los componentes físicos incluyen archivos, cabeceras, bibliotecas compartidas, módulos, ejecutables, o paquetes. Los diagramas de Componentes prevalecen en el campo de la arquitectura de software pero pueden ser usados para modelar y documentar cualquier arquitectura de sistema.', 'img/diagrama de componentes.png', 'sistema, software, componentes, dependencias, físicos, archivos, cabeceras, bibliotecas compartidas, módulos, ejecutables, paquetes, arquitectura de software, documentar.'),
+(3, 'diagrama de distribucion', 'En el diagrama de distribución es donde representamos la estructura de hardware donde estará nuestro sistema o software, para ello cada componente lo podemos representar como nodos, el nodo es cualquier elemento que sea un recurso de hardware, es decir, es nuestra denominación genérica para nuestros equipos.', 'img/diagrama de distribucion.png', 'estructura de hardware, sistema, software, nodos, hardware, denominación genérica, equipos.'),
+(4, 'clases del proyecto', 'En informática, una clase es una plantilla para la creación de objetos de datos según un modelo predefinido. Las clases se utilizan para representar entidades o conceptos, como los sustantivos en el lenguaje. Cada clase es un modelo que define un conjunto de variables -el estado, y métodos apropiados para operar con dichos datos -el comportamiento. Cada objeto creado a partir de la clase se denomina instancia de la clase.', 'img/clases.png', 'informática, clase, plantilla, datos, modelo predefinido, clases, entidades, conceptos, sustantivos, lenguaje, modelo, conjunto, variables, estado, métodos apropiados, operar, comportamiento, instancia de la clase.'),
+(5, 'modelo entidad relacion (mer)', 'es una herramienta para el modelado de datos que permite representar las entidades relevantes de un sistema de información así como sus interrelaciones y propiedades.', 'img/mer.png', 'herramienta, modelado de datos, bases de datos, entidades, sistema de información, interrelaciones,propiedades.');
 
 -- --------------------------------------------------------
 
@@ -219,3 +231,4 @@ ALTER TABLE `tb_usuario`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
