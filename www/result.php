@@ -28,7 +28,7 @@ if(isset($_GET['cadena']))
         header("Content-Type: application/json; charset=UTF-8");
         include 'config.php';
         $conn = new mysqli( $servidor, $usuario, $clave, $base_de_datos );
-        $buscar = utf8_decode($_GET['busqueda']));
+        $buscar = utf8_decode($_GET['busqueda']);
         //echo $buscar.length
 		
 		$buscar = (explode(',',$buscar));
