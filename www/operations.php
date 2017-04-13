@@ -78,8 +78,8 @@ function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
 	}
 
 	/**
-	*description : 		Esta funcion consiste en calcular la enfermedad y dar una impresion.  
-	*@param 	text 	seleciona los sintomas de una lista para calcular la enfermedad.
+	*description : 		Esta funcion consiste en calcular la enfermedad y dar una impresion.-----This function consists of calculating the disease and giving a.
+	*@param 	text 	seleciona los sintomas de una lista para calcular la enfermedad.    -----Select the symptoms from a list to calculate the disease.
 	**/
 
 
@@ -116,8 +116,8 @@ function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
 
 
 	/**
-	*description : 		Esta funcion consiste en realizar una busqueda de la base de datos en la cual me imprime un texto y una imagen sugun la busqueda realizada.
-	*@param 	text 	Realiza la busqueda en la base de datos paara imprimirla en pantalla.
+	*description : 		Esta funcion consiste en realizar una busqueda de la base de datos en la cual me imprime un texto y una imagen sugun la busqueda realizada.  ---This function is to perform a search of the database in which I print a text and an image sugun the search performed
+	*@param 	text 	Realiza la busqueda en la base de datos paara imprimirla en pantalla.---Search the database to print it on the screen
 	**/
 
 
