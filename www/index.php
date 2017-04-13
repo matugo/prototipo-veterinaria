@@ -1,11 +1,11 @@
 <!--
- Autor Marco Gonzalez-Alirio Obregon
+ Author: Marco Gonzalez-Alirio Obregon
  ADSI
  1132133
 -->
 <!DOCTYPE html>
 <?php 
-include'operaciones.php'; 
+include'operations.php'; 
 $mi_obj=new operaciones;
 ?>
 <html ng-app="App">
@@ -48,19 +48,22 @@ $mi_obj=new operaciones;
 			
 				<h2>Busqueda</h2>
 				<input type="text" placeholder="Buscar" class="form-control" ng-model="text_busqueda" ng-change="buscar();"><hr>
-				<div ng-repeat="x in row"><!--Es esencial para que muestre en pantalla los datos que se encuentrán en la base de datos-->
+				<div ng-repeat="x in row"><!--Es esencial para que muestre en pantalla los datos que se encuentrán en la base de datos  *  It is essential to display on screen the data that is in the database
+-->
 					<div class='row'>
 						<div class='col-xs-12 col-md-10S ' style="text-align: justify;">
 											            
 				            
-		                    <strong><li>{{ x.Titulo }}</li></strong><!--trae en pantalla el titulo de una consulta-->
+		                    <strong><li>{{ x.Titulo }}</li></strong><!--trae en pantalla el titulo de una consulta  *  Brings the title of a query
+-->
 		                    <br>
-		                    {{ x.Texto }} <!--trae en pantalla la descripción de una consulta-->
+		                    {{ x.Texto }} <!--trae en pantalla la descripción de una consulta  *  Brings the description of a query
+-->
 						</div>
 							  
 						<div class='col-xs-12 col-md-10 '>
 						<br>
-						   	<img class="img img-responsive" src="{{ x.Img }}" width="500%"><!--trae en pantalla la imagen de una consulta-->
+						   	<img class="img img-responsive" src="{{ x.Img }}" width="500%"><!--trae en pantalla la imagen de una consulta  *  Brings the image of a query on screen-->
 
 					    </div>
 			    	</div>
@@ -104,7 +107,7 @@ $mi_obj=new operaciones;
 								$scope.sintomas=salida;
 								if(salida.length != "" )
 								{
-									$http.get("resultado.php?cadena=" + salida)
+									$http.get("result.php?cadena=" + salida)
 									.then(function (response) {$scope.campos = response.data.records;});
 								
 								}
@@ -115,8 +118,8 @@ $mi_obj=new operaciones;
 			                {
 			                    var buscar = $scope.text_busqueda;    
 			                    console.log(buscar);
-			                    //Aquí se hace el llamado a un php con conexión a MySQL.
-			                     $http.get( "resultado.php?busqueda=" + buscar )
+			                    //Aquí se hace el llamado a un php con conexión a MySQL. Here is the call to a php with connection to MySQL
+			                     $http.get( "result.php?busqueda=" + buscar )
 			                    .then(function( response ){ $scope.row = response.data.records;  }
 			                    );                                       
 			                }
