@@ -1,4 +1,4 @@
-function tomar_sintomas()
+function drink_symptom()
 {
 	var lista=document.getElementById('lista');
 	var salida="";
