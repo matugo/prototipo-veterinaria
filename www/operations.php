@@ -8,13 +8,13 @@ class operaciones
 
 
 	/**
-	*description : 		Esta funcion consiste en imprimir resultados.         ----- This function consists of printing results.
-	*@param 	text 	llamado de la tabla de valores, de la base de datos.  -----Called from the table of values, from the database.
-	*@param 	text 	Aqui Llamamos el campo de la tabla.                   -----Here we call the field of the table
-	*@param 	text 	Se debe de tener unos requerimientos en la función.   -----It must have some requirements in the function
-	*@return 	text 	dato de salida de la tabla selecionada.               -----Output data of the selected table
+	*Descrición : 		Esta funcion consiste en imprimir resultados.           -----This function consists of printing results.  
+	*@param 	text 	llamado de la tabla de valores, de la base de datos.    -----Called from the table of values, from the database.
+	*@param 	text 	Aqui Llamamos el campo de la tabla.                     -----Here we call the field of the table
+	*@param 	text 	Se debe de tener unos requerimientos en la función.     -----It must have some requirements in the function
+	*@return 	text 	dato de salida de la tabla selecionada.                 -----Output data of the selected table
 	**/
-function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
+function return_fact_table( $tabla, $campo_a_retornar, $condicion = null )
 	{
 		
 		//Hay que recordar que solo debería existir un archivo que permita dicha configuración.
@@ -41,16 +41,15 @@ function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
 	} 
 
 
-
 	/**
-	*description : 		Esta funcion me trae todos los valores de la lista.----This function brings all the values ​​in the list
-	*@param 	text 	llamado del identificador de la lista.             ----Call of the list identifier
-	*@param 	text 	Aqui Llamamos el campo de la tabla.                ----Here we call the field of the table
-	*@param 	text 	La llave primaria de una tabla.                    ----The primary key of a table
-	*@param 	text 	nos muestra el campo en pantalla                   ----Shows the field on the screen
-	*@return 	text 	Imprime los resultados de los datos seleccionados. ----Prints the results of the selected data
+	*Descrición : 		Esta funcion me trae todos los valores de la lista.		----This function brings all the values ​​in the list
+	*@param 	text 	llamado del identificador de la lista.					----Call of the list identifier
+	*@param 	text 	Aqui Llamamos el campo de la tabla.						----Here we call the field of the table
+	*@param 	text 	La llave primaria de una tabla.							----The primary key of a table
+	*@param 	text 	nos muestra el campo en pantalla						----Shows the field on the screen
+	*@return 	text 	Imprime los resultados de los datos seleccionados.		----Prints the results of the selected dat	
 	**/
-	function traer_lista_informacion( $nombre_lista, $tabla, $campo_llave_primaria, $campo_a_mostrar )
+	function bring_list_information( $nombre_lista, $tabla, $campo_llave_primaria, $campo_a_mostrar )
 	{
 		
 
@@ -83,7 +82,7 @@ function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
 	**/
 
 
-	function calcular_enfermedad($sintomas)
+	function calculate_disease($sintomas)
 	{
 		$salida="";
 		//$sintomas=$_POST["sintomas"];
@@ -98,32 +97,30 @@ function retornar_dato_tabla( $tabla, $campo_a_retornar, $condicion = null )
 			
 			$conexion = mysqli_connect('localhost','root','','bd_clinica');
 			$resultado = $conexion-> query($sql);
-		$salida.= "<table>";
+		echo "<table>";
 
 				while (  $fila = mysqli_fetch_assoc( $resultado ) )
 						 {
-				$salida.="<tr>";
-						$salida.= "<td width='200px';height='50px';>"  . $fila['enfermedad'] . "</td>";
-						$salida.= "<br>";
-						$salida.= "<td width='200px';height='50px';>" ."<img src='" . $fila['url'] . "'>"."</td>";
-					$salida.="</tr>";
+				echo"<tr>";
+						echo "<td width='200px';height='50px';>"  . $fila['enfermedad'] . "</td>";
+						echo "<br>";
+						echo "<td width='200px';height='50px';>" ."<img src='" . $fila['url'] . "'>"."</td>";
+					echo"</tr>";
 
 				}
-		$salida.= "</table>";
+		echo "</table>";
 
 	}
 
-
-
 	/**
-	*description : 		Esta funcion consiste en realizar una busqueda de la base de datos en la cual me imprime un texto y una imagen sugun la busqueda realizada.  ---This function is to perform a search of the database in which I print a text and an image sugun the search performed
+	*description : 	Esta funcion consiste en realizar una busqueda de la base de datos en la cual me imprime un texto y una imagen sugun la busqueda realizada.  ---This function is to perform a search of the database in which I print a text and an image sugun the search performed
+
 	*@param 	text 	Realiza la busqueda en la base de datos paara imprimirla en pantalla.---Search the database to print it on the screen
 	**/
 
-
-	function buscar($busqueda)
+	function search($busqueda)
 	{
-		    $salida="";
+		    
 	       
 	        /*Esta conexión se realiza para la prueba con angularjs*/
 	        header("Access-Control-Allow-Origin: *");
