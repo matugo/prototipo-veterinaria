@@ -1,16 +1,16 @@
 <!--
- Author: Marco Gonzalez-Alirio Obregon
+ Author Marco Gonzalez-Alirio Obregon
  ADSI
  1132133
 -->
 <!DOCTYPE html>
-<?php 
+<?php
 include'operations.php'; 
 $mi_obj=new operaciones;
 ?>
 <html ng-app="App">
 <head>
-	<title>Veterinaria </title>
+	<title>Veterinary</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script type="text/javascript" src="js/angular.min.js"></script>
 </head>
@@ -18,9 +18,9 @@ $mi_obj=new operaciones;
 	<div ng-controller="App-control">
 		<div class="row">
 			<div class="col-xs-12 col-md-2">
-				<center><h2>Sintomas</h2></center>
+				<center><h2>Symptom</h2></center>
 				<?php 
-						echo $mi_obj->traer_lista_informacion("dato5",'tb_sintomas', "id_sintomas", "sintomas" );
+						echo $mi_obj->bring_list_information("dato5",'tb_sintomas', "id_sintomas", "sintomas" );
 				?>
 				<br>
 			
@@ -36,7 +36,7 @@ $mi_obj=new operaciones;
 				</div>
 				<br>
 				<div class="col-xs-12 col-md-9">
-					<img src="{{ x.Url}} ">
+					<img ng-src="{{ x.Url}} ">
 				</div>
 				</div>
 				</div>
@@ -46,24 +46,21 @@ $mi_obj=new operaciones;
 		</center>
 		<div class="col-xs-12 col-md-4">
 			
-				<h2>Busqueda</h2>
-				<input type="text" placeholder="Buscar" class="form-control" ng-model="text_busqueda" ng-change="buscar();"><hr>
-				<div ng-repeat="x in row"><!--Es esencial para que muestre en pantalla los datos que se encuentrán en la base de datos  *  It is essential to display on screen the data that is in the database
--->
+				<h2>Search</h2>
+				<input type="text" placeholder="Buscar" class="form-control" ng-model="text_busqueda" ng-change="search();"><hr>
+				<div ng-repeat="x in row"><!--Es esencial para que muestre en pantalla los datos que se encuentrán en la base de datos-->
 					<div class='row'>
 						<div class='col-xs-12 col-md-10S ' style="text-align: justify;">
 											            
 				            
-		                    <strong><li>{{ x.Titulo }}</li></strong><!--trae en pantalla el titulo de una consulta  *  Brings the title of a query
--->
+		                    <strong><li>{{ x.Titulo }}</li></strong><!--trae en pantalla el titulo de una consulta-->
 		                    <br>
-		                    {{ x.Texto }} <!--trae en pantalla la descripción de una consulta  *  Brings the description of a query
--->
+		                    {{ x.Texto }} <!--trae en pantalla la descripción de una consulta-->
 						</div>
 							  
 						<div class='col-xs-12 col-md-10 '>
 						<br>
-						   	<img class="img img-responsive" src="{{ x.Img }}" width="500%"><!--trae en pantalla la imagen de una consulta  *  Brings the image of a query on screen-->
+						   	<img class="img img-responsive" ng-src="{{ x.Img }}" width="500%"><!--trae en pantalla la imagen de una consulta-->
 
 					    </div>
 			    	</div>
@@ -82,7 +79,7 @@ $mi_obj=new operaciones;
 							//console.log("funcionando");
 							$scope.saludo= function(a)
 							{
-								//$scope.Alirio= "funcionando";
+								//$scope.Alirio= "funionando";
 								var lista = document.getElementById( "lista" );
 								var con_salida = document.getElementById( "con-salida" );
 								var salida = "";
@@ -114,11 +111,11 @@ $mi_obj=new operaciones;
 
 							}
 
-							$scope.buscar = function(a)
+							$scope.search = function(a)
 			                {
 			                    var buscar = $scope.text_busqueda;    
 			                    console.log(buscar);
-			                    //Aquí se hace el llamado a un php con conexión a MySQL. Here is the call to a php with connection to MySQL
+			                    //Aquí se hace el llamado a un php con conexión a MySQL.
 			                     $http.get( "result.php?busqueda=" + buscar )
 			                    .then(function( response ){ $scope.row = response.data.records;  }
 			                    );                                       
