@@ -14,7 +14,7 @@ class operaciones
 	*@param 	text 	Se debe de tener unos requerimientos en la función.     -----It must have some requirements in the function
 	*@return 	text 	dato de salida de la tabla selecionada.                 -----Output data of the selected table
 	**/
-function return_fact_table( $tabla, $campo_a_retornar, $condicion = null )
+	function return_fact_table( $tabla, $campo_a_retornar, $condicion = null )
 	{
 		
 		//Hay que recordar que solo debería existir un archivo que permita dicha configuración.
@@ -114,7 +114,6 @@ function return_fact_table( $tabla, $campo_a_retornar, $condicion = null )
 
 	/**
 	*description : 	Esta funcion consiste en realizar una busqueda de la base de datos en la cual me imprime un texto y una imagen sugun la busqueda realizada.  ---This function is to perform a search of the database in which I print a text and an image sugun the search performed
-
 	*@param 	text 	Realiza la busqueda en la base de datos paara imprimirla en pantalla.---Search the database to print it on the screen
 	**/
 
